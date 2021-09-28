@@ -1,0 +1,2 @@
+ADD_EXECUTABLE(sample main.cc)
+TARGET_LINK_LIBRARIES(sample ${pkgs_LDFLAGS})
