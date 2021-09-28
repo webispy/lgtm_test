@@ -255,5 +255,8 @@ ENABLE_TESTING()
 
 feature_summary(WHAT ALL)
 
+# External dependency modules - nghttp2
+ADD_SUBDIRECTORY(externals)
+
 # NUGU SDK
 ADD_SUBDIRECTORY(src)

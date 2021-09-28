@@ -1,5 +1,21 @@
+path_classifiers:
+  library:
+    - exclude: "externals"
 extraction:
   cpp:
+    prepare:
+      packages:
+      - "cmake"
+      - "pkg-config"
+      - "libglib2.0-dev"
+      - "libcurl4-openssl-dev"
+      - "libopus-dev"
+      - "portaudio19-dev"
+      - "libssl-dev"
+      - "libasound2-dev"
+      - "libgstreamer-plugins-base1.0-dev"
+      - "libgstreamer1.0-dev"
+      - "libasan4"
     after_prepare:
     - "echo $LGTM_WORKSPACE"
     - "echo $LGTM_SRC"
@@ -27,3 +43,12 @@ extraction:
     - "ls -lR $PPA_PREFIX/lib"
     - "sed -i 's@^libdir\\=\\/usr\\/lib@libdir\\='\"$PPA_PREFIX\"'/lib@' $PPA_PREFIX/lib/pkgconfig/nugu-epd.pc"
     - "sed -i 's@^libdir\\=\\/usr\\/lib@libdir\\='\"$PPA_PREFIX\"'/lib@' $PPA_PREFIX/lib/pkgconfig/nugu-epd.pc"
+    configure:
+      command:
+      - "mkdir build"
+      - "cd build"
+      - "cmake .."
+    index:
+      build_command:
+      - "cd build"
+      - "make -j6"
