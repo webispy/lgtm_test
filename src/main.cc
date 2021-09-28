@@ -1,10 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "test.h"
+
+void leak_test()
+{
+    char *tmp;
+
+    tmp = (char*)malloc(100);
+    tmp[0] = '1';
+}
 
 int main(int argc, char *argv[])
 {
 	EpdParam epd_param;
+
+    leak_test();
 
 	if (kwd_initialize("/", "/") < 0)
 	{
